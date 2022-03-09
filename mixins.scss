@@ -1,0 +1,22 @@
+// Convert font size units to ems
+@function convert($value, $currentUnit, $convertUnit){
+  @if $currentUnit == px{
+    @if $convertUnit == ems{
+      @return $value / 16+em;
+    }
+  }@else if $currentUnit == pts{
+    @if $convertUnit == ems{
+      @return $value / 12+em;
+    }
+  }@else {
+      @return $value;
+  }
+}
+
+
+// Generate fs-9 class to ems
+@for $size from 9 through 18 {
+  .fs-#{$size} {
+    font-size: #{($size / 16)}em !important;
+  }
+}
