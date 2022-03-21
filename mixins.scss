@@ -2,16 +2,28 @@
 @function convert($value, $currentUnit, $convertUnit){
   @if $currentUnit == px{
     @if $convertUnit == ems{
-      @return $value / 16+em;
+      @return calc($value / 16) + em;
     }
   }@else if $currentUnit == pts{
     @if $convertUnit == ems{
-      @return $value / 12+em;
+      @return calc($value / 12) + em;
     }
   }@else {
       @return $value;
   }
 }
+
+
+// how to use the above:
+h1 {
+  font-size: convert(32, pt, em); //32pt / 12 = 2.67em
+}
+
+h2 {
+ font-size: convert(22, px, em); // 22px / 16 = 1.375em 
+}
+
+------
 
 
 // Generate fs-9 class to ems
@@ -20,3 +32,7 @@
     font-size: #{($size / 16)}em !important;
   }
 }
+
+
+// how to use the above:
+// add classes in html: .fs-12 = 12/16 = .75em
